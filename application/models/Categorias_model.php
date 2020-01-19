@@ -38,4 +38,12 @@ class categorias_model extends CI_Model
       }
     }
   }
+  //Pegar categoria pela sua id
+  public function getCategoriaId($id_categoria=NULL){
+    if($id_categoria){
+      $this->db->where('id', $id_categoria);
+      $query = $this->db->get('categorias');
+      return $query->row();
+    }
+  }
 }

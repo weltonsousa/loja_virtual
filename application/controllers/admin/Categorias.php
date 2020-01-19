@@ -23,17 +23,22 @@ class Categorias extends CI_Controller {
 	}
 	public function modulo($id_categoria=NULL){
 
-		$dados = NULL;
-		if ($id_categoria) {
-			$data['titulo'] = 'Atualizar categoria';
-		} else {
-			$data['titulo'] = 'Novo categoria';
-		}
-		$data['view']   = 'admin/categorias/modulo';
-		$data['dados'] = $dados;
-		$data['cat_pai'] = $this->categorias_model->getCatPai();
+				$dados = NULL;
+			if ($id_categoria) {
+				$data['titulo'] = 'Atualizar categoria';
+				$dados = $this->categorias_model->getCategoriaId($id_categoria);
+			if(!$dados) {
+				setMsg('msgCadastro', 'Categoria não encontrada');
+				redirect('admin/categorias', 'refresh');
+			}
+			} else {
+				$data['titulo'] = 'Novo categoria';
+			}
+				$data['view']   = 'admin/categorias/modulo';
+				$data['dados'] = $dados;
+				$data['cat_pai'] = $this->categorias_model->getCatPai();
 
-		$this->load->view('admin/template/index', $data);
+				$this->load->view('admin/template/index', $data);
 	}
 
 	public function core(){
@@ -61,6 +66,5 @@ class Categorias extends CI_Controller {
 			}else {
 				$this->modulo();
 			}
-
 	}
 }

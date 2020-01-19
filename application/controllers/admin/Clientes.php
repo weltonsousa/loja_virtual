@@ -27,7 +27,7 @@ class Clientes extends CI_Controller
 			$data['titulo'] = 'Atualizar cliente';
 			$dados = $this->clientes_model->getClienteId($id_cliente);
 			if(!$dados){
-				setMsg('msgCadastro', 'Cliente não encontrado', 'erro');
+				setMsg('msgCadastro', 'Cliente não encontrado');
 				redirect('admin/clientes', 'refresh');
 			}
 		} else {

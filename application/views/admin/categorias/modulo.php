@@ -44,7 +44,12 @@
            <select name="id_cat_pai" class="form-control">
           <option></option>
            <?php foreach( $cat_pai as $cat ) { ?>
-            <option value="<?= $cat->Id ?>"><?= $cat->nome ?></option>
+               <?php if ($dados) { // inicio do if ?>
+            <option value="<?= $cat->Id ?>" <?= ($dados->id_cat_pai == $cat->Id  ? 'selected =""' : ' ') ?>>
+             <?= $cat->nome ?></option>
+               <?php } else { ?>
+                 <option value="<?= $cat->Id ?>"> <?= $cat->nome ?></option>
+               <?php } ?>
             <?php } // fim do foreach?>
            </select>
           </div>
